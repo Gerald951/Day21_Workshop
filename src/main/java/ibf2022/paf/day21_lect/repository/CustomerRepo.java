@@ -19,6 +19,8 @@ public class CustomerRepo {
 
     private final String findAllSQL = "Select * from customer;";
 
+    private final String findAllSQLLimitOffSet = "select * from customer limit ? offset ?";
+
     public List<Customer> getAllCustomers() {
         final List<Customer> custList = new ArrayList<Customer>();
 
@@ -35,6 +37,24 @@ public class CustomerRepo {
 
         return Collections.unmodifiableList(custList);
     }
+
+    public List<Customer> getAllCustomersWithLimitOffset(Integer limit, Integer offset) {
+        final List<Customer> custList = new ArrayList<Customer>();
+
+        final SqlRowSet rs = jdbcTemplate.queryForRowSet(findAllSQLLimitOffSet, limit, offset);
+
+        while (rs.next()) {
+            Customer customer = new Customer();
+            customer.setId(rs.getInt("id"));
+            customer.setFirstName(rs.getString("first_name"));
+            customer.setLastName(rs.getString("last_name"));
+            customer.setDob(rs.getDate("dob"));
+            custList.add(customer);
+        }
+
+        return Collections.unmodifiableList(custList);
+    }
+    
     
 }
 

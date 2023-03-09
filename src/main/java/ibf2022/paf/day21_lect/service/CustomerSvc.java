@@ -18,5 +18,9 @@ public class CustomerSvc {
         
         return customerRepo.getAllCustomers();
     }
+
+    public List<Customer> retrieveAllCustomerLimitOffset(Integer limit, Integer offset) {
+        return customerRepo.getAllCustomersWithLimitOffset(limit, offset);
+    }
     
 }
