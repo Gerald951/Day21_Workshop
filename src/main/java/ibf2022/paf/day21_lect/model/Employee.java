@@ -1,61 +1,45 @@
 package ibf2022.paf.day21_lect.model;
 
-import java.util.List;
-
 public class Employee {
-    private Integer id;
-
-    // firstName (Entity) --> first_name (mySQL)
-    // firstname (Entity) --> firstname (mySQL)
+    
+    // Below shows the linking of auto-mapping of name in java to SQL.
+    // firstName (Entity)  --> first_name (SQL)
+    private int Id;
     private String firstName;
-
     private String lastName;
+    private float salary;
 
-    private Integer salary;
-
-    private List<Dependant> dependants;
-
-    public Integer getId() {
-        return id;
+    public int getId() {
+        return Id;
     }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(int id) {
+        Id = id;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public Integer getSalary() {
+    public float getSalary() {
         return salary;
     }
-
-    public void setSalary(Integer salary) {
+    public void setSalary(float salary) {
         this.salary = salary;
     }
-
-    public List<Dependant> getDependants() {
-        return dependants;
+    
+    
+    @Override
+    public String toString(){
+        return "ID: %d, Full Name: %s %s, Salary: %f".formatted(Id, firstName, lastName, salary);
     }
 
-    public void setDependants(List<Dependant> dependants) {
-        this.dependants = dependants;
-    }
 
-    
-    
-    
 }
+
